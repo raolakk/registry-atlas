@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101828">
+  <meta name="description" content="A simple guide to the protections and gaps in 15 open-source package ecosystems, based on the September 2026 registry security report.">
+  <title>Registry Atlas — Package Registry security Capability Map</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%237452d6'/%3E%3Cpath d='M20 8 30 13v9L20 32 10 22v-9Z' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./data.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#explore">Skip to registry explorer</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Registry Atlas home"><span class="brand-icon" aria-hidden="true">⬡</span>registry<span>atlas</span></a>
+    <nav aria-label="Main navigation"><a href="#explore">Explore</a><a href="#insights">Big picture</a><a href="#about">About</a></nav>
+    <a class="report-link" href="./report.pdf" target="_blank" rel="noopener">Read the report ↗</a>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="snapshot"><span></span> 15 ecosystems · Report validated September 2026</div>
+      <h1>Package Registry<br><span>Security capability Map.</span></h1>
+      <p>Your registry protects some parts of the supply chain. Not all of them.<br class="desktop-break"> See what’s covered, what’s missing, and why it matters.</p>
+      <a class="hero-link" href="#explore">Start with your ecosystem <span>↓</span></a>
+      <div class="hero-decoration" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="shield">⬡<span>✓</span></div><div class="floating-label label-one"><i>✓</i> Safer publishing</div><div class="floating-label label-two"><i>◐</i> Gaps still exist</div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span></div>
+    </section>
+
+    <section id="explore" class="explorer" aria-labelledby="explorer-heading">
+      <div class="explorer-top">
+        <div><span class="eyebrow">EXPLORE THE EVIDENCE</span><h2 id="explorer-heading">Two ways to see the supply chain.</h2></div>
+      </div>
+      <div class="pivot-tabs" role="tablist" aria-label="Explore security by">
+        <button id="registry-tab" role="tab" aria-selected="true" aria-controls="registry-panel" tabindex="0">By registry <span>What protects my ecosystem?</span></button>
+        <button id="control-tab" role="tab" aria-selected="false" aria-controls="control-panel" tabindex="-1">By control <span>Who has this protection?</span></button>
+      </div>
+      <section id="registry-panel" role="tabpanel" aria-labelledby="registry-tab">
+        <div class="registry-toolbar"><p>Pick a registry. See its strengths, gaps, and the evidence.</p>
+        <div class="selection-controls">
+          <label class="registry-picker"><span class="sr-only">Choose a registry</span><select id="registry-select"></select></label>
+          <button id="compare-toggle" class="button secondary" aria-expanded="false">+ Compare another</button>
+        </div>
+        </div>
+      <div id="comparison-picker" class="comparison-picker" hidden><label for="compare-select">Compare with</label><select id="compare-select"></select><button id="remove-comparison" class="text-button">Remove comparison ×</button></div>
+      <div id="registry-summary" aria-live="polite"></div>
+      <div class="controls-intro"><h3>Nine things worth knowing</h3><p>Plain-language answers. Expand any item for the evidence.</p></div>
+      <div id="control-groups" class="control-groups"></div>
+      <div class="reading-note"><span aria-hidden="true">ⓘ</span><p><strong>Available doesn’t mean enabled for everyone.</strong> “Partial” can mean opt-in, limited coverage, or a separate tool. “Not applicable” is not a failure.</p></div>
+      <details id="all-controls" class="all-controls"><summary>Want the full picture? <span>See all 45 controls <span aria-hidden="true">+</span></span></summary><div id="all-controls-content"></div></details>
+      </section>
+      <section id="control-panel" role="tabpanel" aria-labelledby="control-tab" hidden>
+        <div class="control-picker-bar">
+          <label>Category<select id="category-select"></select></label>
+          <label>Control<select id="control-select"></select></label>
+        </div>
+        <div id="control-overview" aria-live="polite"></div>
+        <div id="control-results"></div>
+        <p class="control-footnote">16 profiles represent 15 ecosystems: Arch official and AUR are separate. Ratings show availability, not adoption or an overall security score. N/A is not a failure.</p>
+      </section>
+    </section>
+
+    <section id="insights" class="insights-section" aria-labelledby="insights-heading">
+      <div class="section-heading"><span class="eyebrow">THE BIG PICTURE</span><h2 id="insights-heading">Three things the checkmarks don’t tell you.</h2><p>Patterns across the whole report—not a ranking of registries.</p></div>
+      <div id="featured-insights" class="insight-grid"></div>
+      <details class="more-insights"><summary>Five more findings worth a look <span aria-hidden="true">+</span></summary><div id="more-insights-content"></div></details>
+    </section>
+
+    <section id="about" class="about-section" aria-labelledby="about-heading">
+      <div><span class="eyebrow">A MAP, NOT A SAFETY GUARANTEE</span><h2 id="about-heading">Simple on the surface.<br>Grounded in the research.</h2><p>All 720 ratings from the original report are preserved. We’ve made them easier to read—not turned them into an arbitrary security score.</p><a class="report-link" href="./report.pdf#page=31" target="_blank" rel="noopener">Source report & change log ↗</a></div>
+      <details class="methodology"><summary>How to read this guide <span aria-hidden="true">+</span></summary><div>
+        <p><strong>This is a research snapshot, not live monitoring.</strong> Original assessment: 3 August 2026. Post-assessment validation: 30 September 2026. Check current registry documentation before making operational decisions.</p>
+        <p><strong>15 ecosystems, 16 profiles.</strong> Arch’s official repositories and AUR are separate because their security models are very different. Their CLI ratings follow the report’s shared pacman row; AUR itself uses external recipe/build workflows.</p>
+        <p><strong>Availability is not adoption.</strong> A control may be opt-in, client-version-dependent, or limited to selected packages. Planned features are not counted as shipped. No overall safety score is calculated.</p>
+        <p><strong>Different architectures need different controls.</strong> Go has no registry publishing accounts. CPAN is in the report’s curated cohort, but PAUSE uploads are self-service. Neither classification proves human review or safe code.</p>
+        <p><strong>Evidence has limits.</strong> Inferred or thinly documented cells are marked “Lower-confidence evidence” in expanded details. The report flags selected domain/credential checks, NuGet provenance, Maven scanning, and Debian/Arch authentication practices.</p>
+        <p><strong>What is an insight?</strong> Report findings, derived calculations, and our design implications are labeled separately. Funding patterns are associations, not proof of causation.</p>
+        <p>The framework contains 32 OpenSSF v0.1 controls and 13 author-defined extensions. <a href="./report.pdf#page=2" target="_blank" rel="noopener">Rating key, p. 2 ↗</a> · <a href="./report.pdf#page=30" target="_blank" rel="noopener">Caveats, pp. 30–31 ↗</a></p>
+      </div></details>
+    </section>
+  </main>
+  <footer><a class="brand" href="#">registry<span>atlas</span></a><span>Security is a system, not a score.</span><span>Based on the attached research · September 2026</span></footer>
+  <noscript><p class="noscript-notice">Enable JavaScript to explore registry capabilities. You can still <a href="./report.pdf">read the source PDF</a>.</p></noscript>
+</body>
+</html>
