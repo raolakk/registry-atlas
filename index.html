@@ -21,7 +21,7 @@
   <main>
     <section class="hero">
       <div class="snapshot"><span></span> 15 ecosystems · Report validated September 2026</div>
-      <h1>Package Registry<br><span>Security capability Map.</span></h1>
+      <h1>Package Registry<br><span>Security Capability Map.</span></h1>
       <p>Your registry protects some parts of the supply chain. Not all of them.<br class="desktop-break"> See what’s covered, what’s missing, and why it matters.</p>
       <a class="hero-link" href="#explore">Start with your ecosystem <span>↓</span></a>
       <div class="hero-decoration" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="shield">⬡<span>✓</span></div><div class="floating-label label-one"><i>✓</i> Safer publishing</div><div class="floating-label label-two"><i>◐</i> Gaps still exist</div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span></div>
@@ -61,15 +61,26 @@
     </section>
 
     <section id="insights" class="insights-section" aria-labelledby="insights-heading">
-      <div class="section-heading"><span class="eyebrow">THE BIG PICTURE</span><h2 id="insights-heading">Three things the checkmarks don’t tell you.</h2><p>Patterns across the whole report—not a ranking of registries.</p></div>
-      <div id="featured-insights" class="insight-grid"></div>
-      <details class="more-insights"><summary>Five more findings worth a look <span aria-hidden="true">+</span></summary><div id="more-insights-content"></div></details>
+      <div class="section-heading"><span class="eyebrow">THE BIG PICTURE</span><h2 id="insights-heading">The weak points are between the checkmarks.</h2><p>Nine connected findings from the report. All evidence and recommendations are visible here—no panels to expand.</p></div>
+      <div class="insight-thesis">
+        <span class="eyebrow">OUR READING OF THE REPORT</span>
+        <h3>Registries are hardening publishing. The next frontier is the trust around it.</h3>
+        <p>Stronger credentials cannot make a compromised workflow safe. An attestation cannot help if nobody verifies it. Removing a package cannot undo an installation. The strategic shift is from collecting controls to connecting them.</p>
+        <ol class="insight-priorities">
+          <li><strong>Before release</strong><span>Constrain who and what can publish.</span></li>
+          <li><strong>At installation</strong><span>Verify evidence and enforce safe defaults.</span></li>
+          <li><strong>After exposure</strong><span>Connect incidents to affected consumers.</span></li>
+        </ol>
+        <p class="source-line">Synthesis, not a security score · <a href="./report.pdf#page=28" target="_blank" rel="noopener">Report conclusions, pp. 28–30 ↗</a></p>
+      </div>
+      <div id="insights-grid" class="insight-grid"></div>
+      <p class="insights-scope">Reading the numbers: 15 ecosystems, 16 assessed profiles (Arch official and AUR are separate). Counts use shipped ratings only; partial and planned are not counted as shipped. These are capability findings, not measurements of adoption or attack probability. Recommendations below are our implications, not additional report ratings.</p>
     </section>
 
     <section id="about" class="about-section" aria-labelledby="about-heading">
       <div><span class="eyebrow">A MAP, NOT A SAFETY GUARANTEE</span><h2 id="about-heading">Simple on the surface.<br>Grounded in the research.</h2><p>All 720 ratings from the original report are preserved. We’ve made them easier to read—not turned them into an arbitrary security score.</p><a class="report-link" href="./report.pdf#page=31" target="_blank" rel="noopener">Source report & change log ↗</a></div>
       <details class="methodology"><summary>How to read this guide <span aria-hidden="true">+</span></summary><div>
-        <p><strong>This is a research snapshot, not live monitoring.</strong> Original assessment: 3 August 2026. Post-assessment validation: 30 September 2026. Check current registry documentation before making operational decisions.</p>
+        <p><strong>This is a research snapshot, not live monitoring.</strong> This is assessment done by Michael Scovetta and Rao Lakkakula at Microsoft in Sept 2026. Check current registry documentation before making operational decisions.</p>
         <p><strong>15 ecosystems, 16 profiles.</strong> Arch’s official repositories and AUR are separate because their security models are very different. Their CLI ratings follow the report’s shared pacman row; AUR itself uses external recipe/build workflows.</p>
         <p><strong>Availability is not adoption.</strong> A control may be opt-in, client-version-dependent, or limited to selected packages. Planned features are not counted as shipped. No overall safety score is calculated.</p>
         <p><strong>Different architectures need different controls.</strong> Go has no registry publishing accounts. CPAN is in the report’s curated cohort, but PAUSE uploads are self-service. Neither classification proves human review or safe code.</p>

@@ -194,17 +194,30 @@
     }
   });
 
-  const featured = [
-    { index: 0, stat: '0 of 15', heading: 'Nobody closes the alert loop.', body: 'No assessed ecosystem proactively tells exposed users that a package was later pulled. Running your own audit is still on you.', color: 'red' },
-    { index: 1, stat: 'Only Go', heading: 'A vulnerability isn’t always reachable.', body: 'Go alone has native tooling to check whether your app calls vulnerable functions. Finding a CVE is not the same as finding real exposure.', color: 'blue' },
-    { index: 2, stat: '5 of 15', heading: 'Publishing secrets are disappearing. Trust isn’t.', body: 'Five ecosystems support trusted publishing. It removes stored secrets, but a compromised CI workflow can still publish with a valid identity.', color: 'green' },
-  ];
+  document.querySelector('#insights-grid').innerHTML = insights.map((insight, index) => `
+    <article id="insight-${escape(insight.id)}" class="insight-card ${escape(insight.color)}" aria-labelledby="insight-title-${index}">
+      <div class="insight-kicker"><span>${String(index + 1).padStart(2, '0')}</span>${escape(insight.tag)}</div>
+      <h3 id="insight-title-${index}">${escape(insight.title)}</h3>
+      <div class="insight-metric"><strong class="insight-stat">${escape(insight.stat)}</strong><span>${escape(insight.label)}</span></div>
+      <p class="insight-finding">${escape(insight.text)}</p>
+      <div class="insight-action"><h4>What to do differently</h4><p>${escape(insight.implication)}</p></div>
+      <div class="insight-footer">
+        <p class="source-line">${escape(insight.kind)} · ${sources(insight.pages)}</p>
+        <div class="insight-controls" aria-label="Explore related controls">${insight.codes.map(code => `<a href="#registry=npm&view=control&category=${code[0]}&control=${code}" data-explore-control="${code}" aria-label="Explore ${escape(getCapability(code).name)}">${code}: ${escape(getCapability(code).name)} <span aria-hidden="true">↗</span></a>`).join('')}</div>
+      </div>
+    </article>`).join('');
 
-  function insightDetails(insight) {
-    return `<details class="insight-evidence"><summary>Why it matters <span aria-hidden="true">+</span></summary><p>${insight.text}</p><p class="implication">${insight.implication}</p><p class="source-line">${insight.kind} · ${sources(insight.pages)}</p></details>`;
-  }
-  document.querySelector('#featured-insights').innerHTML = featured.map(item => `<article class="insight-card ${item.color}"><span class="insight-stat">${item.stat}</span><h3>${item.heading}</h3><p>${item.body}</p>${insightDetails(insights[item.index])}</article>`).join('');
-  document.querySelector('#more-insights-content').innerHTML = insights.slice(3).map(insight => `<article class="extra-insight"><h3>${insight.title}</h3><p>${insight.text}</p><p class="implication">${insight.implication}</p><p class="source-line">${insight.kind} · ${sources(insight.pages)}</p></article>`).join('');
+  document.querySelector('#insights-grid').addEventListener('click', event => {
+    const link = event.target.closest('a[data-explore-control]');
+    if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    state.control = link.dataset.exploreControl;
+    state.category = getCapability(state.control).track;
+    state.pivot = 'control';
+    saveSelection();
+    renderPivot();
+    controlSelect.focus();
+  });
 
   primarySelect.addEventListener('change', () => {
     const previous = state.primary;

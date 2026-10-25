@@ -29,7 +29,7 @@ All asset and PDF URLs are relative, so repository sites such as `https://userna
 - All 45 original controls remain available behind **See all 45 controls**.
 - **By control:** pick one of five categories, then select a specific control to see all 16 profiles grouped by rating. Counts describe profiles, not unique ecosystems or security scores.
 - Select **Whole category** to compare every control in that category in a horizontally scrollable table. Select a column heading to explore a control; select a rating to open that registry's evidence. Lower-confidence cells are marked with a dagger.
-- Three headline insights are visible; five additional findings and methodology are expandable.
+- **Big picture:** nine evidence-backed findings are visible together, including their reasoning, practical recommendations, PDF citations, and links into the control explorer. No insight content is collapsed or requires a panel toggle. Methodology remains expandable.
 - Selection is shareable in the URL, for example `#registry=npm&compare=pypi`.
 - Control views are shareable too: `#registry=npm&view=control&category=Z&control=Z4` (one control) or `#registry=npm&view=control&category=C&control=all` (whole category).
 - The visual palette uses bold navy, blue, green, red, and amber with high-contrast text. Rating labels and symbols accompany colors; no meaning depends on color alone.
@@ -39,6 +39,8 @@ All asset and PDF URLs are relative, so repository sites such as `https://userna
 The original assessment is **3 August 2026**, validated **30 September 2026**. This is a transformation of that report, not a live assessment.
 
 All **720 ratings** are retained: 45 controls across 16 profiles representing 15 ecosystems. Arch official and AUR remain separate. Available does not mean enabled for everyone; partial can mean opt-in or external tooling; planned is not shipped; N/A is not failure. No composite security score is used.
+
+The Big picture section connects controls rather than ranking registries: CI identity and release approval, integrity versus provenance, post-removal response, maintainer succession, effective coverage, layered barriers, architectural trust boundaries, reachability-aware triage, and sustainable security staffing. Findings and derived comparisons are labeled; recommendations are editorial implications. The RubyGems MFA calculation measures package count, not download coverage. Control counts use shipped ratings only.
 
 ## Validate changes
 
